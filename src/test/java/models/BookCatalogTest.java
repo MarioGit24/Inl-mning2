@@ -2,9 +2,9 @@ package models;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import model.Book;
-import model.BookCatalog;
-import model.BookNotFoundException;
+import models.Book;
+import models.BookCatalog;
+import models.BookNotFoundException;
 import org.junit.jupiter.api.Test;
 
 public class BookCatalogTest {
@@ -43,6 +43,15 @@ public class BookCatalogTest {
 	  bookCatalog.addBook(book3);
 
 	  try {
+
+		 Book findbook =  bookCatalog.findBook("Learning Java");
+
+
+		 assertNotNull(findbook, "Book is found");
+		 assertEquals("Learning Java", findbook.getTitle());
+
+	  } catch (BookNotFoundException e) {
+		  fail("did not find book");
 
 	  }
 
