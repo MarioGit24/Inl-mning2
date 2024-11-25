@@ -4,7 +4,6 @@ import models.BookCatalog;
 import models.BookNotFoundException;
 import models.Customer;
 import models.Loan;
-import models.LoanAlreadyExistsException;
 import utilities.GenderType;
 
 public class Main {
