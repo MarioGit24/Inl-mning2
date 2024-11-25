@@ -45,6 +45,7 @@ public class BookCatalogTest {
 	@Test
 	public void testFindBook() {
      BookCatalog bookCatalog = new BookCatalog();
+		bookCatalog.addBook(book1);
 
 	  try {
 
@@ -67,6 +68,7 @@ public class BookCatalogTest {
 	@Test
 	public void testFindBookIgnoringCase() {
 		BookCatalog bookCatalog = new BookCatalog();
+		bookCatalog.addBook(book1);
 
 		try {
 			Book findbook2 =  bookCatalog.findBook("LEARNING Java");
