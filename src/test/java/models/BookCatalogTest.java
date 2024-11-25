@@ -86,6 +86,17 @@ public class BookCatalogTest {
 	//G
 	@Test
 	public void testFindBookWithExtraSpaces() {
+		BookCatalog bookCatalog = new BookCatalog();
+		bookCatalog.addBook(book1);
+
+		try {
+			Book findbook3 = bookCatalog.findBook(" Learning   Java ");
+			assertNotNull(findbook3, "Book is found" );
+			assertEquals("Learning Java", findbook3.getTitle());
+
+		}catch (BookNotFoundException e) {
+			fail("did not find book");
+		}
 
 	}
 
