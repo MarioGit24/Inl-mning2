@@ -9,102 +9,96 @@ import org.junit.jupiter.api.Test;
 
 public class BookCatalogTest {
 
-	private BookCatalog bc;
-	private Book book1;
+    private BookCatalog bc;
+    private Book book1;
 
-	public BookCatalogTest() {
-		bc = new BookCatalog();
-		book1 = new Book(1,"Learning Java","Mario B","123","Library",200);
-		bc.addBook(book1);
-	}
+    public BookCatalogTest() {
+        bc = new BookCatalog();
+        book1 = new Book(1, "Learning Java", "Mario B", "123", "Library", 200);
+        bc.addBook(book1);
+    }
 
-	//G
-	@Test
-	public void testAddABook() {
-		Book newBook = new Book(2,"An introduction to Java","Matt Greencroft","12345","Anytown Branch", 400);
+    //G
+    @Test
+    public void testAddABook() {
+        Book newBook = new Book(2, "An introduction to Java", "Matt Greencroft", "12345", "Anytown Branch", 400);
 
-		bc.addBook(newBook); // Lägger till boken och går sedan till try catch för att kolla om boken finns.
+        bc.addBook(newBook); // Lägger till boken och går sedan till try catch för att kolla om boken finns.
 
-		try {
-			Book foundBook = bc.findBook("An introduction to Java"); // Hitta boken
-			assertNotNull(foundBook, "catalog should have the new book"); // ifall vi har hittat boken så gåt vi vidare
-			assertEquals("An introduction to Java", foundBook.getTitle()); // Jämför strängen med titen av boken
-		} catch (BookNotFoundException e) {
-			fail("Book should have been found"); // Om vi inte hittat boken så skickar vi ett felmeddelande
-		}
-
-
+        try {
+            Book foundBook = bc.findBook("An introduction to Java"); // Hitta boken
+            assertNotNull(foundBook, "catalog should have the new book"); // ifall vi har hittat boken så gåt vi vidare
+            assertEquals("An introduction to Java", foundBook.getTitle()); // Jämför strängen med titen av boken
+        } catch (BookNotFoundException e) {
+            fail("Book should have been found"); // Om vi inte hittat boken så skickar vi ett felmeddelande
+        }
 
 
+    }
+
+    //G
+    @Test
+    public void testFindBook() {
+        BookCatalog bookCatalog = new BookCatalog();
+        bookCatalog.addBook(book1);
+
+        try {
+
+            Book findbook = bookCatalog.findBook("Learning Java");
 
 
+            assertNotNull(findbook, "Book is found");
+            assertEquals("Learning Java", findbook.getTitle());
 
-	}
+        } catch (BookNotFoundException e) {
+            fail("did not find book");
 
-	//G
-	@Test
-	public void testFindBook() {
-     BookCatalog bookCatalog = new BookCatalog();
-		bookCatalog.addBook(book1);
-
-	  try {
-
-		 Book findbook =  bookCatalog.findBook("Learning Java");
+        }
 
 
-		 assertNotNull(findbook, "Book is found");
-		 assertEquals("Learning Java", findbook.getTitle());
+    }
 
-	  } catch (BookNotFoundException e) {
-		  fail("did not find book");
+    //G
+    @Test
+    public void testFindBookIgnoringCase() {
+        BookCatalog bookCatalog = new BookCatalog();
+        bookCatalog.addBook(book1);
 
-	  }
+        try {
+            Book findbook2 = bookCatalog.findBook("LEARNING Java");
 
-
-
-	}
-
-	//G
-	@Test
-	public void testFindBookIgnoringCase() {
-		BookCatalog bookCatalog = new BookCatalog();
-		bookCatalog.addBook(book1);
-
-		try {
-			Book findbook2 =  bookCatalog.findBook("LEARNING Java");
-
-			assertNotNull(findbook2, "Book is found");
-		assertEquals("Learning Java", findbook2.getTitle());
+            assertNotNull(findbook2, "Book is found");
+            assertEquals("Learning Java", findbook2.getTitle());
 
 
-		} catch (BookNotFoundException e) {
-			fail("did not find book");
-		}
+        } catch (BookNotFoundException e) {
+            fail("did not find book");
+        }
 
-	}
+    }
 
-	//G
-	@Test
-	public void testFindBookWithExtraSpaces() {
-		BookCatalog bookCatalog = new BookCatalog();
-		bookCatalog.addBook(book1);
+    //G
+    @Test
+    public void testFindBookWithExtraSpaces() {
+        BookCatalog bookCatalog = new BookCatalog();
+        bookCatalog.addBook(book1);
 
-		try {
-			Book findbook3 = bookCatalog.findBook(" Learning   Java ");
-			assertNotNull(findbook3, "Book is found" );
-			assertEquals("Learning Java", findbook3.getTitle());
+        try {
+            Book findbook3 = bookCatalog.findBook(" Learning   Java ");
+            assertNotNull(findbook3, "Book is found");
+            assertEquals("Learning Java", findbook3.getTitle());
 
-		}catch (BookNotFoundException e) {
-			fail("did not find book");
-		}
+        } catch (BookNotFoundException e) {
+            fail("did not find book");
+        }
 
-	}
+    }
 
-	//VG
-	// This test should throw BookNotFoundException in order to pass.
-	@Test
-	public void testFindBookThatDoesntExist() throws BookNotFoundException {
+    //VG
+    // This test should throw BookNotFoundException in order to pass.
+    @Test
+    public void testFindBookThatDoesntExist() throws BookNotFoundException {
 
-	}
+    }
 
 }
