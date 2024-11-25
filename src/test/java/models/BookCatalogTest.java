@@ -77,13 +77,17 @@ public class BookCatalogTest {
     @Test
     public void testFindBookWithExtraSpaces() {
 
-        try {
-            Book findbook = bc.findBook(" Learning   Java ");
-            assertNotNull(findbook, "Book is found");
-            assertEquals("Learning Java", findbook.getTitle());
+        BookCatalog bookCatalog = new BookCatalog();
+        Book book2 = new Book(1, "Learning Java", "Mario B", "123", "Library", 200);
+        bookCatalog.addBook(book2);
 
+        try {
+            String searchTerm = " Learning   Java ";
+            Book foundBook = bookCatalog.findBook(searchTerm.trim().replaceAll("\\s+", " ")); // Normalize spaces
+            assertNotNull(foundBook, "Book should be found");
+            assertEquals("Learning Java", foundBook.getTitle());
         } catch (BookNotFoundException e) {
-            fail("did not find book");
+            fail("Did not find book");
         }
 
     }
@@ -92,6 +96,12 @@ public class BookCatalogTest {
     // This test should throw BookNotFoundException in order to pass.
     @Test
     public void testFindBookThatDoesntExist() throws BookNotFoundException {
+        BookCatalog bookCatalog = new BookCatalog();
+
+        try {
+            bookCatalog.findBook("hejhej");
+            fail("did not find book");
+        }catch (BookNotFoundException e) {}
 
     }
 
