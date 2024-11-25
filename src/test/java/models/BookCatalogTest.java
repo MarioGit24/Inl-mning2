@@ -39,12 +39,10 @@ public class BookCatalogTest {
     //G
     @Test
     public void testFindBook() {
-        BookCatalog bookCatalog = new BookCatalog();
-        bookCatalog.addBook(book1);
 
         try {
 
-            Book findbook = bookCatalog.findBook("Learning Java");
+            Book findbook = bc.findBook("Learning Java");
 
 
             assertNotNull(findbook, "Book is found");
@@ -61,14 +59,12 @@ public class BookCatalogTest {
     //G
     @Test
     public void testFindBookIgnoringCase() {
-        BookCatalog bookCatalog = new BookCatalog();
-        bookCatalog.addBook(book1);
 
         try {
-            Book findbook2 = bookCatalog.findBook("LEARNING Java");
+            Book findbook = bc.findBook("LEARNING Java");
 
-            assertNotNull(findbook2, "Book is found");
-            assertEquals("Learning Java", findbook2.getTitle());
+            assertNotNull(findbook, "Book is found");
+            assertEquals("Learning Java", findbook.getTitle());
 
 
         } catch (BookNotFoundException e) {
@@ -80,13 +76,11 @@ public class BookCatalogTest {
     //G
     @Test
     public void testFindBookWithExtraSpaces() {
-        BookCatalog bookCatalog = new BookCatalog();
-        bookCatalog.addBook(book1);
 
         try {
-            Book findbook3 = bookCatalog.findBook(" Learning   Java ");
-            assertNotNull(findbook3, "Book is found");
-            assertEquals("Learning Java", findbook3.getTitle());
+            Book findbook = bc.findBook(" Learning   Java ");
+            assertNotNull(findbook, "Book is found");
+            assertEquals("Learning Java", findbook.getTitle());
 
         } catch (BookNotFoundException e) {
             fail("did not find book");
