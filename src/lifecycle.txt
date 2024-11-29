@@ -1,0 +1,11 @@
+Vad det gör: Kompilera koden betyder att omvandla din Java-kod till bytekod som kan köras på en Java Virtual Machine (JVM). Det sker vanligtvis när du kör mvn compile i Maven.
+2. Ta bort klassfiler (Clean)
+Vad det gör: När du kör kommandot mvn clean tas alla genererade filer (t.ex. .class-filer och andra mellanlagringsfiler) bort från projektet.
+3. Javadoc
+Vad det gör: Genererar dokumentation från dina Javadoc-kommentarer i koden. Du använder kommandot mvn javadoc:javadoc för att skapa HTML-sidor baserat på de kommentarer som finns i din kod.
+4. Rapport för testerna (Test Report)
+Vad det gör: När du kör tester med Maven (t.ex. mvn test), samlas resultatet av testerna i en rapport. Denna rapport visar om testerna har passerat eller misslyckats.
+5. Testning
+Vad det gör: Genom att köra mvn test körs alla testfall definierade i din kod, vanligtvis via JUnit.
+6. Paketering (Package)
+Vad det gör: När du kör mvn package skapas en JAR- eller WAR-fil (beroende på projektets konfiguration) som innehåller den kompilerade koden och resursfiler.
